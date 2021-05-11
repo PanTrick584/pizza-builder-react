@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React from 'react';
+import Menu from './components/Menu'
+import Builder from './components/Builder/Builder'
+import Ingredients from './components/Ingredients/Ingredients'
+import ingredientsItems from './ingredients-items'
+
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducer/reducer'
+
 import './App.css';
+
+const initialStore = {
+  popupBuilder : 'flex',
+  ingredients : ingredientsItems,
+  pizzaCounter : 0,
+  pizza: []
+}
+const store = createStore( reducer, initialStore );
+
+console.log( store.getState() );
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   
+      <div className="container">
+       <Provider store={store}>
+        <Menu />
+        <Builder />
+        <Ingredients />
+        </Provider>
+      </div>
+    
   );
 }
 

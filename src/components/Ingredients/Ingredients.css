@@ -1,0 +1,70 @@
+.ingredients {
+    position: relative;
+    font-size: 4rem;
+    color: var(--color-gray);
+    padding: 4rem 0;
+    border: 1px solid #424242;
+    flex: 0 0 25%;
+}
+.ingredients-container {
+    height: 90vh;
+    width: 100%;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.ingredients-container::-webkit-scrollbar {
+    display: none;
+}
+
+.ingredients-box {
+    display: flex;
+    border-top: 1px solid var(--color-gray);
+}
+.ingredients-box:last-child {
+    border-bottom: 1px solid var(--color-gray);
+}
+.ingredients-box-elements {
+    flex: 0 0 50%;
+    height: 100%;
+    padding: 2rem;
+    border-right: 1px solid var(--color-gray);
+}
+.ingredients-box-header {
+    font-size: 2.2rem;
+    width: min-content;
+    text-transform: uppercase;
+}
+.ingredients-box-img {
+    height: 10vh;
+}
+.ingredients-box-price,
+.ingredients-box-amount,
+.ingredients-box-totalPrice {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+}
+.ingredients-box-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.ingredients-box-button {
+    flex: 0 0 33%;
+    width: 100%;
+    height: 4rem;
+    font-size: 2.2rem;
+    background-color: inherit;
+    color: #ddd;
+    border: none;
+    transition: all .2s;
+    cursor: pointer;
+}
+.ingredients-box-button:hover {
+    background-color: var(--color-gray);
+    color: var(--color-gray-dark);
+}
+.ingredients-box-button:not(:last-of-type) {
+    border-bottom: 1px solid var(--color-gray);
+}
