@@ -2,7 +2,7 @@
     font-size: 4rem;
     color: #ddd;
     flex: 0 0 15%;
-    border: 1px solid #424242;
+    border-right: 1px solid #424242;
 }
 .menu-h3 {
     padding-left: 4rem;

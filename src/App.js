@@ -11,10 +11,9 @@ import reducer from './reducer/reducer'
 import './App.css';
 
 const initialStore = {
-  popupBuilder : 'flex',
+  popupShow: true,
   ingredients : ingredientsItems,
-  pizzaCounter : 0,
-  pizza: []
+  pizzaCounter : 0
 }
 const store = createStore( reducer, initialStore );
 
@@ -22,6 +21,7 @@ console.log( store.getState() );
 
 
 function App() {
+
   return (
    
       <div className="container">

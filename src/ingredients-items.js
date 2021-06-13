@@ -3,16 +3,16 @@ export default [
         id: 1,
         name: "ciasto",
         ingredients: [
-            {name: "cienkie", picture: "#", price: 8, amount: 0, totalPrice: 0},
-            {name: "grube", picture: "#", price: 8, amount: 0, totalPrice: 0}
+            {name: "cienkie", picture: "#", price: 8, check: false, totalPrice: 0},
+            {name: "grube", picture: "#", price: 8, check: false, totalPrice: 0}
         ]
     },
     {
         id: 2,
         name: "sosy",
         ingredients: [
-            {name: "pomidorowy", picture: "#", price: 3, amount: 0, totalPrice: 0},
-            {name: "bazylia", picture: "#", price: 3, amount: 0, totalPrice: 0}
+            {name: "pomidorowy", picture: "#", price: 3, check: false, totalPrice: 0},
+            {name: "bazylia", picture: "#", price: 3, check: false, totalPrice: 0}
         ]
     },
     {
@@ -53,10 +53,10 @@ export default [
         id: 6,
         name: "owoce",
         "ingredients": [
-            {name: "gruszka", picture: "img/pepper_color.png", price: 2.1, amount: 0, totalPrice: 0},
-            {name: "banan", picture: "img/onion_color.png", price: 0.8, amount: 0, totalPrice: 0},
-            {name: "brzoskwinia", picture: "img/tomato_color.png", price: 1.6, amount: 0, totalPrice: 0},
-            {name: "avocado", picture: "img/corn_color.png", price: 1.2, amount: 0, totalPrice: 0}
+            {name: "gruszka", picture: "img/pear.png", price: 2.1, amount: 0, totalPrice: 0},
+            {name: "banan", picture: "img/banana.png", price: 0.8, amount: 0, totalPrice: 0},
+            {name: "brzoskwinia", picture: "img/peach.png", price: 1.6, amount: 0, totalPrice: 0},
+            {name: "avocado", picture: "img/avocado.png", price: 1.2, amount: 0, totalPrice: 0}
         ]
     },
     {
@@ -73,10 +73,10 @@ export default [
         id: 8,
         name: "na wierzch",
         "ingredients":[
-            {name: "sałata rzymska", picture: "img/blue-cheese_color.png", price: 3.2, amount: 0, totalPrice: 0},
-            {name: "rukola", picture: "img/gouda-cheese_color.png", price: 3.2, amount: 0, totalPrice: 0},
-            {name: "melon", picture: "img/mazdamer-cheese_color.png", price: 3.2, amount: 0, totalPrice: 0},
-            {name: "oliwa", picture: "img/tilsiter-cheese_color.png", price: 3.2, amount: 0, totalPrice: 0}
+            {name: "sałata rzymska", picture: "img/roman-salad.png", price: 3.2, amount: 0, totalPrice: 0},
+            {name: "rukola", picture: "img/rucola-salad.png", price: 3.2, amount: 0, totalPrice: 0},
+            {name: "melon", picture: "img/melon.png", price: 3.2, amount: 0, totalPrice: 0},
+            {name: "oliwa", picture: "img/oil.png", price: 3.2, amount: 0, totalPrice: 0}
         ]
     }
 ]

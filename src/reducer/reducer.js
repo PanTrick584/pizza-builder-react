@@ -1,17 +1,17 @@
 import { 
-    POPUP_BUILDER,
     PIZZA_COUNTER_ADD,
     PIZZA_COUNTER_REMOVE,
     PIZZA_COUNTER_SET, 
     ADD_INGREDIENT, 
     REMOVE_INGREDIENT,
     DELETE_INGREDIENT,
-    COUNT_SINGLE_PRICE
+    COUNT_SINGLE_PRICE,
+    POPUP_SHOW
 } from '../actions/actions'
 
 function reducer ( state, action ) {
-    if( action.type === POPUP_BUILDER ) {
-        return { ...state, popupBuilder: 'none' }
+    if( action.type === POPUP_SHOW ) {
+        return { ...state, popupShow: false }
     }
     if( action.type === PIZZA_COUNTER_ADD ) {
         if( state.pizzaCounter < state.ingredients.length ) {

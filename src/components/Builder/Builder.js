@@ -1,23 +1,27 @@
 import React from 'react';
+
 import { connect } from 'react-redux'
-import { POPUP_BUILDER, PIZZA_COUNTER_ADD, PIZZA_COUNTER_REMOVE } from '../../actions/actions' 
+import { CSSTransition } from 'react-transition-group';
+import { POPUP_SHOW, PIZZA_COUNTER_ADD, PIZZA_COUNTER_REMOVE } from '../../actions/actions' 
+
+import BuilderPopup from './BuilderPopup'
 
 import './Builder.css'
 
-const Builder = ( { popupBuilder, close, pizzaCounterAdd, pizzaCounterRemove, pizzaCounter, ingredients } ) => {
+const Builder = ( { popupShow, popupBuilder, close, pizzaCounterAdd, pizzaCounterRemove, pizzaCounter, ingredients } ) => {
 
     let next = pizzaCounter < ingredients.length ? 'następne' : 'kończymy?';
 
-
-    let pizzaBuilder = ingredients.map( ing => {
+    let pizzaSectionIngredients = ingredients.map( ing => {
          let ingItems = ing.ingredients.map( ingItem => {
-             console.log( pizzaCounter, ing.id )
-             let IngEl;
-             if ( ing.id === pizzaCounter ) {
+            let IngEl;
+            if ( ing.id === pizzaCounter ) {
 
-            if(ingItem.amount > 0 ) {
-                IngEl = <div key={ ingItem.name }>{ingItem.name}</div>
-            }
+                if(ingItem.amount > 0 && ingItem.picture !== undefined ) {
+                    return IngEl = <div className="builder-ingredient" key={ ingItem.name }>{ingItem.name}
+                                <img className="builder-section-img" src={ingItem.picture} alt={ ingItem.name } />
+                            </div>
+                }
             return IngEl;
              }
             return IngEl;
@@ -25,18 +29,43 @@ const Builder = ( { popupBuilder, close, pizzaCounterAdd, pizzaCounterRemove, pi
         return ingItems;
     })
 
+    let pizzaSectionPrice = ingredients
+                            .filter( ing => ing.id === pizzaCounter )
+                            .map( ingSection => {
+                               return ingSection.ingredients.map( ingItem => {
+                                   return ingItem.totalPrice
+                               } ).reduce( (num, sum) => { return sum + num }, 0 )
+                            } )
+
+
+    console.log(pizzaSectionPrice)
+    
+    let pizzaAllIngredients = ingredients.map( ing => {
+        let ingItems = ing.ingredients.map( ingItem => {
+           let IngEl;
+           if(ingItem.amount > 0 && ingItem.picture !== undefined ) {
+            IngEl = <div className="builder-ingredient" key={ ingItem.name }>{ingItem.name}<img className="builder-ingredient-img" src={ingItem.picture} alt={ ingItem.name } /></div>
+        }
+           return IngEl;
+       })
+       return ingItems;
+   })
+
     return(
         <div className="builder"> 
-           <div className="builer-popup" style={{display: popupBuilder}}>
-                    <div className="builder-popup-box">
-                        <h1 className="builder-popup-box-header">Witaj! Swórz swoją własną pizze!</h1>
-                        <button className="builder-popup-box-button" onClick={ ()=> { close(); pizzaCounterAdd() } }>Zaczynamy!</button>
-                    </div>
-            </div>
+            <CSSTransition  in={ popupShow } timeout={ { exit: 1000, appear: 2000 } } classNames={'builder-popup'} appear={true} unmountOnExit >
+                <BuilderPopup /> 
+            </CSSTransition>
+            {console.log(popupShow)}
             <div className="builder-container">
-                <div>
-                    {[...pizzaBuilder]}
+                <div className="builder-container-ingredients">
+                    {[...pizzaSectionIngredients]}
+                    <div className="builder-section-info">
+                        <h4 className="builder-section-title">cena składników <br /> z sekcji:</h4>
+                        <p className="builder-section-price">{parseFloat(pizzaSectionPrice).toFixed(2)}</p>
+                    </div>
                 </div>
+                <div className="builder-container-itself"> {[...pizzaAllIngredients]}</div>
             </div>
             <div className="builder-info">
                 <div className="builder-info-box">
@@ -51,16 +80,18 @@ const Builder = ( { popupBuilder, close, pizzaCounterAdd, pizzaCounterRemove, pi
         </div>
     )
 }
+
 const mapStateToProps = store => {
     return {
         popupBuilder : store.popupBuilder,
         pizzaCounter : store.pizzaCounter,
-        ingredients : store.ingredients
+        ingredients : store.ingredients,
+        popupShow : store.popupShow
 }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        close : () => dispatch( { type : POPUP_BUILDER } ),
+        close : () => dispatch( { type : POPUP_SHOW } ),
         pizzaCounterAdd : () => dispatch( { type : PIZZA_COUNTER_ADD } ),
         pizzaCounterRemove : () => dispatch( { type : PIZZA_COUNTER_REMOVE } )
     }

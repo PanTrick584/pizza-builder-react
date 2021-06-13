@@ -16,6 +16,13 @@
 
   background-color: var(--color-gray-dark);
 }
-.active {
-  
+.app {
+  font-size: 4rem;
+}
+.app-appear {
+  transform: scale(.3);
+}
+.app-appear-active {
+  transform: scale(1);
+  transition: transform 2s;
 }

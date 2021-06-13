@@ -24,9 +24,10 @@ const Ingredients = ( { ingredients, pizzaCounter, addIngredient, removeIngredie
                                         <p className="ingredients-box-totalPrice">Koszt: {ingEl.totalPrice}</p>
                                     </div>
                                     <div className="ingredients-box-buttons">
-                                        <button className="ingredients-box-button" onClick={ () => { addIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } } >DODAJ</button>
-                                        <button className="ingredients-box-button" onClick={ () => { removeIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } }>ODEJMIJ</button>
+                                        {ingEl.amount === undefined ? <button className="ingredients-box-button"></button> : <button className="ingredients-box-button" onClick={ () => { addIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } } >DODAJ</button>}
+                                        {ingEl.amount === undefined ? <button className="ingredients-box-button">WYBIERZ</button> : <button className="ingredients-box-button" onClick={ () => { removeIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } }>ODEJMIJ</button>}
                                         <button className="ingredients-box-button" onClick={ () => { deleteIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) }  }>USUŃ</button>
+                                        
                                     </div>
                                 </div>
                     } )
