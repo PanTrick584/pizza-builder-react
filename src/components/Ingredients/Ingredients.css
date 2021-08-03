@@ -2,16 +2,13 @@
     position: relative;
     font-size: 4rem;
     color: var(--color-gray);
-    padding: 4rem 0;
-    border: 1px solid #424242;
-    flex: 0 0 25%;
+    margin-top: auto;
+    display: flex;
 }
 .ingredients-container {
-    height: 90vh;
-    width: 100%;
-    overflow: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    display: flex;
+    margin-left: auto;
+    padding: 2rem;
 }
 .ingredients-container::-webkit-scrollbar {
     display: none;
@@ -19,42 +16,64 @@
 
 .ingredients-box {
     display: flex;
-    border-top: 1px solid var(--color-gray);
+    flex-direction: column;
+    margin: 0 2.5rem;
+    min-width: 10rem;
 }
-.ingredients-box:last-child {
-    border-bottom: 1px solid var(--color-gray);
-}
+
 .ingredients-box-elements {
-    flex: 0 0 50%;
-    height: 100%;
-    padding: 2rem;
-    border-right: 1px solid var(--color-gray);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    margin-top: auto;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid #fff;
 }
 .ingredients-box-header {
-    font-size: 2.2rem;
+    font-size: 1.4rem;
+    width: 100%;
+    color: #fff;
+    text-align: center;
     width: min-content;
     text-transform: uppercase;
+    margin: 1rem auto;
 }
 .ingredients-box-img {
-    height: 10vh;
+    height: 12vh;
+    width: max-content;
+    margin: 0 auto;
+}
+.ingredients-box-amount {
+    font-size: 1.4rem;
+}
+.ingredients-box-totalPrice {
+    font-size: 1.4rem;
+}
+.ingredients-box-price {
+    margin-bottom: -.3rem;
+    font-size: 2.4rem;
 }
 .ingredients-box-price,
 .ingredients-box-amount,
 .ingredients-box-totalPrice {
-    font-size: 2.2rem;
+    color: #fff;
     text-transform: uppercase;
 }
 .ingredients-box-buttons {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
+}
+.middle {
+    padding: 0 1.4rem;
 }
 .ingredients-box-button {
     flex: 0 0 33%;
     width: 100%;
     height: 4rem;
-    font-size: 2.2rem;
+    font-size: 3.2rem;
     background-color: inherit;
     color: #ddd;
     border: none;
@@ -64,7 +83,4 @@
 .ingredients-box-button:hover {
     background-color: var(--color-gray);
     color: var(--color-gray-dark);
-}
-.ingredients-box-button:not(:last-of-type) {
-    border-bottom: 1px solid var(--color-gray);
 }

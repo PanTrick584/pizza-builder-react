@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Container from './components/Container'
 import Menu from './components/Menu'
 import Builder from './components/Builder/Builder'
 import Ingredients from './components/Ingredients/Ingredients'
@@ -23,15 +25,9 @@ console.log( store.getState() );
 function App() {
 
   return (
-   
-      <div className="container">
        <Provider store={store}>
-        <Menu />
-        <Builder />
-        <Ingredients />
-        </Provider>
-      </div>
-    
+          <Container />
+        </Provider>    
   );
 }
 

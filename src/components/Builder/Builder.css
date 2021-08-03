@@ -1,17 +1,15 @@
 .builder {
-    position: relative;
-    flex: 0 0 60%;
     font-size: 4rem;
+    width: 55%;
+    height: 75vh;
     color: red;
-    padding: 4rem 0;
-    border-right: 1px solid var(--color-gray);
+    margin-left: 2rem;
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 .builder-popup {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,15 +63,24 @@
     padding-bottom: 1rem;
     padding-left: 1rem;
 }
-.builder-section-price {
-    font-size: 4rem;
-    color: #fff;
-    border-bottom: 1px solid var(--color-gray);
-    padding-bottom: 1rem;
-    padding-left: 1rem;
+
+/* BUILDER INGREDIENT */
+.builder-aside {
+     display: flex;
+     flex-direction: column;
 }
-
-
+.builder-aside-header {
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 2rem 0;
+    color: #fff;
+    text-align: center;
+}
+.builder-aside-img {
+    max-height: 5rem;
+    width: auto;
+}
 
 .builder-popup-box {
     text-align: center;
@@ -85,7 +92,6 @@
 }
 
 .builder-container {
-    height: 80vh;
     display: flex;
 }
 .builder-container-ingredients {
@@ -95,7 +101,7 @@
     border-right: 1px solid var(--color-gray);
 }
 .builder-container-itself {
-    width: 75%;
+    margin-left: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -118,8 +124,10 @@
     color: var(--color-gray-dark);
 }
 .builder-ingredient {
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .builder-ingredient-img {
-    height: 8rem;
+    height: 10rem;
 }

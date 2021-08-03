@@ -16,17 +16,17 @@ const Ingredients = ( { ingredients, pizzaCounter, addIngredient, removeIngredie
                 if( ing.id === pizzaCounter ) {
                     let ingBox = ing.ingredients.map( (ingEl, id) => {
                         return <div key={id} className="ingredients-box">
+                                    <img src={ingEl.picture} alt={ingEl.name} className="ingredients-box-img"/>
+                                    <h3 className="ingredients-box-header">{ingEl.name}</h3>
                                     <div className="ingredients-box-elements">
-                                        <h3 className="ingredients-box-header">{ingEl.name}</h3>
-                                        <img src={ingEl.picture} alt={ingEl.name} className="ingredients-box-img"/>
-                                        <p className="ingredients-box-price">Cena: {ingEl.price}</p>
-                                        <p className="ingredients-box-amount">Ilość: {ingEl.amount}</p>
-                                        <p className="ingredients-box-totalPrice">Koszt: {ingEl.totalPrice}</p>
+                                        <p className="ingredients-box-amount">{ingEl.amount} x </p>
+                                        <p className="ingredients-box-price"> {ingEl.price}</p>
+                                        <p className="ingredients-box-totalPrice"> = {ingEl.totalPrice}</p>
                                     </div>
                                     <div className="ingredients-box-buttons">
-                                        {ingEl.amount === undefined ? <button className="ingredients-box-button"></button> : <button className="ingredients-box-button" onClick={ () => { addIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } } >DODAJ</button>}
-                                        {ingEl.amount === undefined ? <button className="ingredients-box-button">WYBIERZ</button> : <button className="ingredients-box-button" onClick={ () => { removeIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } }>ODEJMIJ</button>}
-                                        <button className="ingredients-box-button" onClick={ () => { deleteIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) }  }>USUŃ</button>
+                                        {ingEl.amount === undefined ? <button className="ingredients-box-button"></button> : <button className="ingredients-box-button" onClick={ () => { addIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } } >+</button>}
+                                        {ingEl.amount === undefined ? <button className="ingredients-box-button">WYBIERZ</button> : <button className="ingredients-box-button middle" onClick={ () => { removeIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } }>-</button>}
+                                        <button className="ingredients-box-button" onClick={ () => { deleteIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) }  }>x</button>
                                         
                                     </div>
                                 </div>

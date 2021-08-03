@@ -1,22 +1,6 @@
 export default [
-    {
+        {
         id: 1,
-        name: "ciasto",
-        ingredients: [
-            {name: "cienkie", picture: "#", price: 8, check: false, totalPrice: 0},
-            {name: "grube", picture: "#", price: 8, check: false, totalPrice: 0}
-        ]
-    },
-    {
-        id: 2,
-        name: "sosy",
-        ingredients: [
-            {name: "pomidorowy", picture: "#", price: 3, check: false, totalPrice: 0},
-            {name: "bazylia", picture: "#", price: 3, check: false, totalPrice: 0}
-        ]
-    },
-    {
-        id: 3,
         name : "mięso",
         ingredients: [
             {name: "kurczak", picture: "img/chicken_color.png", price: 3, amount: 0, totalPrice: 0},
@@ -27,7 +11,7 @@ export default [
     ]
     },
     {
-        id: 4,
+        id: 2,
         name: "ryby & owoce morza",
         "ingredients": [
             {name: "tuńczyk", picture: "img/tuna.png", price: 2, amount: 0, totalPrice: 0},
@@ -37,7 +21,7 @@ export default [
         ]
     },
     {
-        id: 5,
+        id: 3,
         name: "warzywa",
         "ingredients": [
             {name: "papryka", picture: "img/pepper_color.png", price: 2.1, amount: 0, totalPrice: 0},
@@ -50,7 +34,7 @@ export default [
         ]
     },
     {
-        id: 6,
+        id: 4,
         name: "owoce",
         "ingredients": [
             {name: "gruszka", picture: "img/pear.png", price: 2.1, amount: 0, totalPrice: 0},
@@ -60,7 +44,7 @@ export default [
         ]
     },
     {
-        id: 7,
+        id: 5,
         name: "ser",
         "ingredients":[
             {name: "ser pleśniowy", picture: "img/blue-cheese_color.png", price: 3.2, amount: 0, totalPrice: 0},
@@ -70,7 +54,7 @@ export default [
         ]
     },
     {
-        id: 8,
+        id: 6,
         name: "na wierzch",
         "ingredients":[
             {name: "sałata rzymska", picture: "img/roman-salad.png", price: 3.2, amount: 0, totalPrice: 0},

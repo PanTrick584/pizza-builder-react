@@ -7,6 +7,10 @@
 :root {
   --color-gray-dark: #202020;
   --color-gray: #424242;
+  --color-grey: #272727;
+}
+body {
+  font-family: 'Oswald', sans-serif;
 }
 .container {
   height: 100vh;
@@ -15,14 +19,4 @@
   display: flex;
 
   background-color: var(--color-gray-dark);
-}
-.app {
-  font-size: 4rem;
-}
-.app-appear {
-  transform: scale(.3);
-}
-.app-appear-active {
-  transform: scale(1);
-  transition: transform 2s;
 }

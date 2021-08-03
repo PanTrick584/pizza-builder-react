@@ -8,13 +8,20 @@ import './BuilderPopup.css'
 const BuilderPopup = ( { pizzaCounterAdd, popupShow, close } ) => {
 
     return(
-        <div className="builder-popup">
+        <div className="popup">
             <div className="builder-popup-box">
-                <h1 className="builder-popup-box-header">Witaj! Swórz swoją własną pizze!</h1>
-                    <button className="builder-popup-box-button" onClick={ ()=> { pizzaCounterAdd(); close() } }>Zaczynamy!</button>
+                <h1 className="popup-head-one">Pizza Builder!</h1>
+                <h4 className="popup-head-four">by Patryk Chodacki</h4>
             </div>
+               {popupShow ? <button className="builder-popup-box-button" onClick={ ()=> { pizzaCounterAdd(); close() } }>Zaczynamy!</button> : null}
         </div>
     );
+}
+
+const mapStateToProps = state => {
+    return {
+        popupShow: state.popupShow
+    }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -24,4 +31,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps) (BuilderPopup)
+export default connect(mapStateToProps, mapDispatchToProps) (BuilderPopup)

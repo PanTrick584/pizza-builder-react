@@ -1,0 +1,40 @@
+.popup {
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.popup-head-one {
+    font-size: 2.6rem;
+    text-align: left;
+    color: var(--color-grey);
+}
+.popup-head-four {
+    text-align: left;
+    font-size: 1.4rem;
+    padding-bottom: 2rem;
+    color: var(--color-grey);
+}
+.builder-popup-box-button {
+    height: 4rem;
+    width: 100%;
+    font-size: 2rem;
+    font-family: inherit;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 1rem;
+    margin-left: -1rem;
+    background-color: #fff;
+    border: none;
+    background-color: var(--color-grey);
+    color: #fff;
+    cursor: pointer;
+    transition: all .2s;
+    
+    animation-name: button-rotate;
+    animation-duration: 3000ms;
+}
+.builder-popup-box-button:hover {
+    background-color: #fff;
+    color: var(--color-grey);
+}
