@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
 import { connect } from 'react-redux'
 import { POPUP_SHOW, PIZZA_COUNTER_ADD, PIZZA_COUNTER_REMOVE } from '../../actions/actions' 
 
 import './Builder.css'
 
-const Builder = ( { popupShow, popupBuilder, close, pizzaCounterAdd, pizzaCounterRemove, pizzaCounter, ingredients } ) => {
+const Builder = ( { ingredients } ) => {
 
+    const [ top, setTop ] = useState( '100px' );
+    const [ left, setLeft ] = useState( '100px' );
+    const ref = useRef(null)
     
     let pizzaAllIngredients = ingredients.map( ing => {
         let ingItems = ing.ingredients.map( ingItem => {
@@ -21,9 +24,17 @@ const Builder = ( { popupShow, popupBuilder, close, pizzaCounterAdd, pizzaCounte
        return ingItems;
    })
 
+   const flySomewhere = () => {
+    let numTop = Math.floor(Math.random() * ref.current.clientHeight);
+    setTop(`${numTop}px`)
+    let numLeft = Math.floor(Math.random() * ref.current.clientWidth);
+    setLeft(`${numLeft}px`);
+   }
+
     return(
-        <div className="builder" style={{ backgroundImage: 'url(./img/pizza.png)' }}> 
-            <div className="builder-container-itself">
+        <div className="builder" ref={ ref } > 
+            <div className="fly" style={{ top: top, left: left, backgroundImage: "url('./img/fly.png')" }} onMouseEnter={ flySomewhere } ></div>
+            <div className="builder-container">
                 {[...pizzaAllIngredients]}
             </div>
         </div>

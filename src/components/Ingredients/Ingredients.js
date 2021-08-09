@@ -9,7 +9,7 @@ import { ADD_INGREDIENT, REMOVE_INGREDIENT, DELETE_INGREDIENT, COUNT_SINGLE_PRIC
 
 import './Ingredients.css'
 
-const Ingredients = ( { ingredients, pizzaCounter, addIngredient, removeIngredient, deleteIngredient, countSinglePrice } ) => {
+const Ingredients = ( { popupShow, ingredients, pizzaCounter, addIngredient, removeIngredient, deleteIngredient, countSinglePrice } ) => {
 
     const ingredientsBox = useCallback(
         () => pizzaCounter >= 1 ? ingredients.map( ing => {
@@ -43,10 +43,11 @@ const Ingredients = ( { ingredients, pizzaCounter, addIngredient, removeIngredie
     }, [pizzaCounter, ingredientsBox, ingredients] )
 
     return(
-        <div className="ingredients">
+        <div className="ingredients" style={{ backgroundColor: popupShow ? 'var(--color-grey)' : 'var(--color-main)' }}>
             <div className="ingredients-container">
                 {[...ingredientsBox()]}
             </div>
+            <div className="ingredients-decoration"></div>
         </div>
     )
 }
@@ -54,7 +55,8 @@ const Ingredients = ( { ingredients, pizzaCounter, addIngredient, removeIngredie
 const mapStateToProps = state => {
     return {
         ingredients : state.ingredients,
-        pizzaCounter : state.pizzaCounter
+        pizzaCounter : state.pizzaCounter,
+        popupShow: state.popupShow
     }
 }
 const mapDispatchToProps = dispatch => {

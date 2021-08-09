@@ -5,9 +5,8 @@
   box-sizing: border-box;
 }
 :root {
-  --color-gray-dark: #202020;
-  --color-gray: #424242;
   --color-grey: #272727;
+  --color-main: #ffffca;
 }
 body {
   font-family: 'Oswald', sans-serif;

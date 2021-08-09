@@ -2,13 +2,13 @@ import React, { useCallback } from 'react'
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
 
-import { PIZZA_COUNTER_SET } from '../actions/actions'
+import { PIZZA_COUNTER_SET, PIZZA_COUNTER_ADD, POPUP_SHOW } from '../actions/actions'
 
 import Popup from './Popup/BuilderPopup'
 
 import './Menu.css'
 
-const Menu = ( { popupShow, ingredients, pizzaCounter, renderIngredients } ) => {
+const Menu = ( { popupShow, ingredients, pizzaCounter, renderIngredients, pizzaCounterAdd, close } ) => {
 
    
 
@@ -19,7 +19,7 @@ const Menu = ( { popupShow, ingredients, pizzaCounter, renderIngredients } ) => 
             key={ing.id} 
             onClick={ ()=> renderIngredients( id +1 ) } >
             {ing.name}
-            <p className="builder-section-price">{parseFloat(pizzaSectionPrice[id]).toFixed(2)}</p>
+            <p>{parseFloat(pizzaSectionPrice[id]).toFixed(2)}</p>
             </li>
     } ) : [], [ingredients, pizzaCounter, renderIngredients])
 
@@ -41,15 +41,19 @@ const Menu = ( { popupShow, ingredients, pizzaCounter, renderIngredients } ) => 
     
     return(
         <div className="menu">
-            <Popup />
-            <h3 className="menu-h3">Najlepszej jakości składniki:</h3>
-            <nav className="menu-nav" >                
+            <div className="header">
+                <h1 className="popup-head-one">Pizza Builder!</h1>
+                <h4 className="menu-h4">by Patryk Chodacki</h4>
+                {popupShow ? <button className="menu-btn" onClick={ ()=> { pizzaCounterAdd(); close() } }>Zaczynamy!</button> : null}
+            </div>
+          { popupShow ? null : <nav className="menu-nav" >                
+                <h3 className="menu-h3">Najlepszej jakości składniki:</h3>
                 <ul className="menu-nav-ul">
                     {[...menu()]}
                 </ul>
-            </nav>
-            <h3 className="menu-h3" >Razem: <span>{pizzaPrice}</span></h3>
-            {popupShow ? null : <button className="builder-popup-box-button menu-btn">Zamów!</button>}
+            </nav> }
+            { popupShow ? null : <h3 className="menu-h3" >Razem: <span className="menu-price">{parseFloat(pizzaPrice).toFixed(2)}</span></h3>}
+           { popupShow ? null : <button className="menu-btn">Zamów!</button> }
         </div>
     )
 }
@@ -62,7 +66,9 @@ const mapStateToProps = store => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        renderIngredients : ( id ) => dispatch( {type : PIZZA_COUNTER_SET, payload : { id } })
+        renderIngredients : ( id ) => dispatch( {type : PIZZA_COUNTER_SET, payload : { id } }),
+        pizzaCounterAdd : () => dispatch( { type : PIZZA_COUNTER_ADD } ),
+        close : () => dispatch( { type : POPUP_SHOW } )
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (Menu);
