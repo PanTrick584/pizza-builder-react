@@ -5,7 +5,7 @@
     width: 25%;
     height: 100%;
     background-color: var(--color-main);
-    padding: 5rem 0 4rem 3rem;
+    padding: 3rem 0 2rem 3rem;
 }
 @media (max-width: 769px) {
     .menu {
@@ -21,8 +21,8 @@
 }
 .menu-h3 {
     display: flex;
-    padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     font-size: 1.8rem;
     font-weight: 400;
     color: var(--color-grey);

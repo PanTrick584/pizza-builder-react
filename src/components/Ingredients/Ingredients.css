@@ -27,7 +27,7 @@
     align-items: flex-end;
     flex-wrap: wrap;
     margin-right: auto;
-    padding: 2rem 0 5rem 0;
+    padding: 2rem 0 3rem 0;
 }
 @media (max-width: 425px) {
     .ingredients-container {
@@ -86,7 +86,7 @@
 }
 .ingredients-box-img {
     height: 6vh;
-    width: max-content;
+    /* width: max-content; */
     margin: 0 auto;
 }
 @media (max-width: 769px) {

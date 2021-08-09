@@ -9,12 +9,7 @@
     text-align: left;
     color: var(--color-grey);
 }
-.popup-head-four {
-    text-align: left;
-    font-size: 1.4rem;
-    padding-bottom: 2rem;
-    color: var(--color-grey);
-}
+
 .builder-popup-box-button {
     height: 4rem;
     width: 100%;
