@@ -39,7 +39,6 @@ function reducer ( state, action ) {
            } )
            return {...ing, ingredients : tempIng} ;
        } )
-       console.log(state.pizza)
        return {...state, ingredients : tempIngredients }
     }
     if( action.type === REMOVE_INGREDIENT ) {

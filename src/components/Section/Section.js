@@ -6,9 +6,7 @@ import Builder from '../Builder/Builder'
 
 import './Section.css'
 
-const Section = ( { pizzaCounter, popupShow } ) => {
-    // style={ { backgroundImage: `url(./img/pizza-builder-${ pizzaCounter }.jpg)` } }
-    console.log(popupShow)
+const Section = ( { popupShow } ) => {
     return (
         <div className="section" style={{ backgroundColor: popupShow ? "var(--color-main)" : "var(--color-grey)" }} >
             { popupShow ? <div className="section-box"></div> : null}

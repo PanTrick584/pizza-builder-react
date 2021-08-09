@@ -2,10 +2,7 @@ import React, { useCallback } from 'react';
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
 
-import Ingredient from './Ingredient/Ingredient'
-
 import { ADD_INGREDIENT, REMOVE_INGREDIENT, DELETE_INGREDIENT, COUNT_SINGLE_PRICE } from '../../actions/actions'
-
 
 import './Ingredients.css'
 

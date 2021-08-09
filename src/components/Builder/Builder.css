@@ -48,16 +48,16 @@
         height: 8rem;
     }
 }
+@media (max-width: 769px) {
+    .builder-ingredient-img {
+        height: 6rem;
+        max-width: 8rem;
+    }
+}
 @media (max-width: 425px) {
     .builder-ingredient-img {
         height: 4rem;
         max-width: 5rem;
-    }
-}
-@media (max-width: 769) {
-    .builder-ingredient-img {
-        height: 6rem;
-        max-width: 8rem;
     }
 }
 
@@ -69,4 +69,16 @@
     background-size: contain;
     background-repeat: no-repeat;
     transition: all .4s;
+}
+
+@media (max-width: 425px) {
+    .pet {
+        position: absolute;
+        height: 7rem;
+        width: 7rem;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 0;
+    }
 }

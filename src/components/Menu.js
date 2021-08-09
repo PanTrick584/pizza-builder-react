@@ -1,16 +1,25 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
 
 import { PIZZA_COUNTER_SET, PIZZA_COUNTER_ADD, POPUP_SHOW } from '../actions/actions'
 
-import Popup from './Popup/BuilderPopup'
-
 import './Menu.css'
 
 const Menu = ( { popupShow, ingredients, pizzaCounter, renderIngredients, pizzaCounterAdd, close } ) => {
 
-   
+    const [ end, setEnd ] = useState( false );
+
+    let pizzaSectionPrice = ingredients.map( ingSection => {
+        return ingSection.ingredients.map( ingItem => {
+            return ingItem.totalPrice
+        } ).reduce( (num, sum) => { return sum + num }, 0 )
+     } )
+    let pizzaPrice = ingredients.map( ingSection => {
+            return ingSection.ingredients.map( ingItem => {
+                return ingItem.totalPrice
+            } ).reduce( (num, sum) => { return sum + num }, 0 )
+        } ).reduce( (num, sum) => {return sum + num}, 0 )  
 
     const menu = useCallback(() => pizzaCounter >= 1  ? ingredients.map( (ing, id) => {
             let highlightClass = pizzaCounter === id + 1 ? 'menu-highlight' : ''
@@ -21,24 +30,13 @@ const Menu = ( { popupShow, ingredients, pizzaCounter, renderIngredients, pizzaC
             {ing.name}
             <p>{parseFloat(pizzaSectionPrice[id]).toFixed(2)}</p>
             </li>
-    } ) : [], [ingredients, pizzaCounter, renderIngredients])
+    } ) : [], [ingredients, pizzaCounter, renderIngredients, pizzaSectionPrice])
 
     useEffect( () => {
         menu()
     }, [pizzaCounter, menu] )
 
-    let pizzaSectionPrice = ingredients.map( ingSection => {
-                               return ingSection.ingredients.map( ingItem => {
-                                   return ingItem.totalPrice
-                               } ).reduce( (num, sum) => { return sum + num }, 0 )
-                            } )
-    let pizzaPrice = ingredients.map( ingSection => {
-                               return ingSection.ingredients.map( ingItem => {
-                                   return ingItem.totalPrice
-                               } ).reduce( (num, sum) => { return sum + num }, 0 )
-                            } ).reduce( (num, sum) => {return sum + num}, 0 )
-                            console.log( pizzaPrice )
-    
+      
     return(
         <div className="menu">
             <div className="header">
@@ -53,7 +51,14 @@ const Menu = ( { popupShow, ingredients, pizzaCounter, renderIngredients, pizzaC
                 </ul>
             </nav> }
             { popupShow ? null : <h3 className="menu-h3" >Razem: <span className="menu-price">{parseFloat(pizzaPrice).toFixed(2)}</span></h3>}
-           { popupShow ? null : <button className="menu-btn">Zamów!</button> }
+           { popupShow ? null : <button className="menu-btn" onClick={ () => setEnd( true ) }>Zamów!</button> }
+           { end ? <div className="end-popup">
+               <h2 className="end-h2">Gotowe!</h2>
+               <h3 className="end-h3">Twoje zamówienie wyniosło </h3>
+               <span className="end-price">{parseFloat(pizzaPrice).toFixed(2)}</span>
+               <h2 className="end-h2">Dziękujemy!*</h2>
+               <h4 className="end-h4">*Tak naprawdę to wcale nie dziękujemy, Twoje zamówienie nigdy nie zostanie zrealizowane, to był tak naprawę symulator przeganiania muchy...</h4>
+           </div> : null }
         </div>
     )
 }
