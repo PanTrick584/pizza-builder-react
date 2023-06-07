@@ -1,0 +1,209 @@
+.ingredients {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex: 0 0 40%;
+    background-color: var(--color-main);
+    border-top-right-radius: 75px;
+    border-bottom-right-radius: 75px;
+    border-top: 8px solid var(--color-grey);
+
+    &-popup {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        background-color: var(--color-grey);
+        transition: all .2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        color: white;
+    }
+
+    &-container {
+        position: relative;
+        height: 97.5%;
+        flex: 0 0 75%;
+        margin: 5px 0 0 5px;
+        overflow: hidden;
+        transition: all .4s;
+
+        &-scroll {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            overflow: hidden;
+            transition: all .4s;
+        }
+    }
+
+    &-decoration {
+        flex: 0 0 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto 5px auto 0;
+        
+
+        &-arrow-top,
+        &-arrow-bot {
+            width: 100%;
+            height: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-grey);
+            color: white;
+            border: 2px solid var(--color-grey);
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: transparent;
+                color: var(--color-grey);
+            }
+        }
+
+        &-arrow-top {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom: 1px solid white;
+        }
+
+        &-arrow-bot {
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-top: 1px solid white;
+        }
+    }
+}
+@media screen and (min-width: 767px) {
+    .ingredients {
+       
+    }
+}
+// @media (max-width: 425px) {
+//     .ingredients {
+//         flex-direction: row;
+//         flex-wrap: wrap;
+//     }
+// }
+
+// @media (max-width: 425px) {
+//     .ingredients-container {
+//         padding: 1rem 0;
+//         align-items: center;
+//     }
+// }
+// .ingredients-container::-webkit-scrollbar {
+//     display: none;
+// }
+
+
+// @media (max-width: 425px) {
+//     .ingredients-box {
+//         width: 100%;
+//         flex: 0 0 40%;
+//     }
+// }
+
+// @media (max-width: 425px) {
+//     .ingredients-box-elements {
+//         display: none;
+//     }
+// }
+
+// @media (max-width: 425px) {
+//     .ingredients-box-header {
+//         font-size: 1rem;
+//         margin: 0.2rem auto;
+//     }
+// }
+
+// @media (max-width: 769px) {
+//     .ingredients-box-img {
+//     }
+// }
+// @media (max-width: 769px) {
+//     .ingredients-box-img {
+//     }
+// }
+
+// @media (max-width: 769px) {
+//     .ingredients-box-amount {
+//         font-size: 1rem;
+//     }
+// }
+
+// @media (max-width: 769px) {
+//     .ingredients-box-totalPrice {
+//         font-size: 1rem;
+//     }
+// }
+// .ingredients-box-price {
+//     margin-bottom: -0.3rem;
+//     font-size: 2.4rem;
+// }
+// @media (max-width: 769px) {
+//     .ingredients-box-price {
+//         font-size: 1.8rem;
+//     }
+// }
+
+// @media (max-width: 425px) {
+//     .ingredients-box-buttons {
+//         border-bottom: 2px solid var(--color-grey);
+//         margin-top: auto;
+//     }
+// }
+// .middle {
+//     padding: 0 1.4rem;
+// }
+// .ingredients-box-button {
+//     flex: 0 0 33%;
+//     width: 100%;
+//     height: 4rem;
+//     font-size: 3.2rem;
+//     background-color: inherit;
+//     color: var(--color-grey);
+//     border: none;
+//     transition: all 0.2s;
+//     cursor: pointer;
+// }
+// @media (max-width: 425px) {
+//     .ingredients-box-button {
+//         font-size: 2.2rem;
+//     }
+// }
+// .ingredients-box-button:hover {
+//     background-color: var(--color-gray);
+//     color: var(--color-gray-dark);
+// }
+
+// @media (max-width: 1150px) {
+//     .ingredients-decoration {
+//         margin-right: 3rem;
+//     }
+// }
+// @media (max-width: 769px) {
+//     .ingredients-decoration {
+//         margin-right: 3rem;
+//         width: 2.4rem;
+//     }
+// }
+// @media (max-width: 425px) {
+//     .ingredients-decoration {
+//         display: none;
+//     }
+// }

@@ -1,50 +1,83 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
+import SingleIngredient from './Ingredient/Ingredient'
 
-import { ADD_INGREDIENT, REMOVE_INGREDIENT, DELETE_INGREDIENT, COUNT_SINGLE_PRICE } from '../../actions/actions'
+const Ingredients = ( { ingredients, pizzaCounter, removeIngredient, deleteIngredient, pizzaUniqueIngredients } ) => {
+    const [topAmount, setTopAmount] = useState(0)
+    const [maxScroll, setMaxScroll] = useState(0)
+    const [currentScroll, setCurrentScroll] = useState(0)
+    const [scrollHeight, setScrollHeight] = useState(0)
+    const [loadIngredients, setLoadIngredients] = useState(false)
 
-import './Ingredients.css'
+    const refScroll = useRef()
 
-const Ingredients = ( { popupShow, ingredients, pizzaCounter, addIngredient, removeIngredient, deleteIngredient, countSinglePrice } ) => {
+    const ingredientsBox = useCallback( () => pizzaCounter >= 1 ? renderIngredients() : [], [pizzaCounter, ingredients, removeIngredient, deleteIngredient, pizzaUniqueIngredients])
 
-    const ingredientsBox = useCallback(
-        () => pizzaCounter >= 1 ? ingredients.map( ing => {
-                if( ing.id === pizzaCounter ) {
-                    let ingBox = ing.ingredients.map( (ingEl, id) => {
-                        return <div key={id} className="ingredients-box">
-                                    <img src={ingEl.picture} alt={ingEl.name} className="ingredients-box-img"/>
-                                    <h3 className="ingredients-box-header">{ingEl.name}</h3>
-                                    <div className="ingredients-box-elements">
-                                        <p className="ingredients-box-amount">{ingEl.amount} x </p>
-                                        <p className="ingredients-box-price"> {ingEl.price}</p>
-                                        <p className="ingredients-box-totalPrice"> = {ingEl.totalPrice}</p>
-                                    </div>
-                                    <div className="ingredients-box-buttons">
-                                        {ingEl.amount === undefined ? <button className="ingredients-box-button"></button> : <button className="ingredients-box-button" onClick={ () => { addIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } } >+</button>}
-                                        {ingEl.amount === undefined ? <button className="ingredients-box-button">WYBIERZ</button> : <button className="ingredients-box-button middle" onClick={ () => { removeIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) } }>-</button>}
-                                        <button className="ingredients-box-button" onClick={ () => { deleteIngredient( ing.name, ingEl.name ); countSinglePrice( ing.name, ingEl.name ) }  }>x</button>
-                                        
-                                    </div>
-                                </div>
-                    } )
-                    return ingBox;
-                }
-                return []
-            }) : []
-        , [pizzaCounter, ingredients, addIngredient, removeIngredient, deleteIngredient, countSinglePrice]
-    )
+    const renderIngredients = () => ingredients.map( ({name: groupName, id: gropuID, ingredients: groupIngredients }) => {
+        if( gropuID === pizzaCounter ) {
+            return groupIngredients.map( ({name: ingName, price: ingPrice, picture: ingPicture}, id) => {
+                const ingredientAmount = pizzaUniqueIngredients && pizzaUniqueIngredients
+                                            .map( ({name, amount}) => name === ingName && amount)
+                                            .filter( num => num)
+                                            .reduce(( num, sum ) => num + sum, 0)
+                return <SingleIngredient
+                             ingID={id}
+                             ingPicture={ingPicture}
+                             ingName={ingName}
+                             groupName={groupName}
+                             ingPrice={ingPrice}
+                             ingredientAmount={ingredientAmount}
+                        />
+            } )
+        }
+
+        return []
+    })
 
     useEffect( () => {
         ingredientsBox()
-    }, [pizzaCounter, ingredientsBox, ingredients] )
+        setTimeout(() => ingredientsBox(), 100)
+        setScrollHeight(refScroll.current.clientHeight);
+    }, [pizzaCounter, ingredientsBox, ingredients, refScroll])
+
+    useEffect(() => {
+        setLoadIngredients(true)
+        setTimeout(() => setLoadIngredients(false), 300)
+    }, [pizzaCounter])
+
+    useEffect(() => {
+        setMaxScroll(Math.ceil(ingredientsBox().filter( box => box.length > 0).flat().length / 2) -1)
+        setTopAmount(0)
+        setCurrentScroll(0)
+    }, [pizzaCounter])
+
+    const countUp = () => {
+        if(currentScroll > 0) {
+            setCurrentScroll(currentScroll -1)
+            setTopAmount(topAmount + scrollHeight)
+        }
+    }
+
+    const countDown = () => {
+       if( currentScroll < maxScroll) {
+           setTopAmount(topAmount - scrollHeight)
+           setCurrentScroll(currentScroll +1)
+       } 
+    }
 
     return(
-        <div className="ingredients" style={{ backgroundColor: popupShow ? 'var(--color-grey)' : 'var(--color-main)' }}>
-            <div className="ingredients-container">
-                {[...ingredientsBox()]}
+        <div className="ingredients">
+            {loadIngredients  && <div className="ingredients-popup">Loading...</div>}
+            <div className="ingredients-container" ref={refScroll}>
+                <div className="ingredients-container-scroll" style={{top: topAmount}}>
+                    {[...ingredientsBox()]}
+                </div>
             </div>
-            <div className="ingredients-decoration"></div>
+            <div className="ingredients-decoration">
+                <span className="ingredients-decoration-arrow-top" onClick={() => countUp()}>{"<<"}</span>
+                <span className="ingredients-decoration-arrow-bot" onClick={() => countDown()}>{">>"}</span>
+            </div>
         </div>
     )
 }
@@ -53,15 +86,8 @@ const mapStateToProps = state => {
     return {
         ingredients : state.ingredients,
         pizzaCounter : state.pizzaCounter,
-        popupShow: state.popupShow
+        pizzaUniqueIngredients: state.pizzaUniqueIngredients
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        addIngredient : ( sectionName, name ) => dispatch( { type : ADD_INGREDIENT, payload : { sectionName, name } } ),
-        removeIngredient : ( sectionName, name ) => dispatch( { type : REMOVE_INGREDIENT, payload : { sectionName, name } } ),
-        deleteIngredient : ( sectionName, name ) => dispatch( { type : DELETE_INGREDIENT, payload : { sectionName, name } } ),
-        countSinglePrice : ( sectionName, name ) => dispatch( { type : COUNT_SINGLE_PRICE, payload : { sectionName, name } } )
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps) (Ingredients);
+
+export default connect(mapStateToProps) (Ingredients);

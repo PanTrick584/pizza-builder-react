@@ -1,61 +1,71 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from "react";
+import { connect } from "react-redux";
+import { POPUP_SHOW } from "../../actions/actions";
 
-import { connect } from 'react-redux'
-import { POPUP_SHOW, PIZZA_COUNTER_ADD, PIZZA_COUNTER_REMOVE } from '../../actions/actions' 
+const Builder = ({ pizzaAllIngredients }) => {
+    const [top, setTop] = useState("100px");
+    const [left, setLeft] = useState("100px");
+    const [builderGrid, setBuilderGrid] = useState(Array.from(Array(25)))
+    const ref = useRef(null);  
 
-import './Builder.css'
+    const createBuilderGrid = () => {
+        const arrayIngredients = builderGrid
 
-const Builder = ( { ingredients } ) => {
+        pizzaAllIngredients.map( ing => arrayIngredients[ing.randomid] = ing)
+        
+        const arrayBuilder = builderGrid.map( (cell, i) => cell ? <div className="builder-container-box ing" 
+                                                                    style={{backgroundImage: `url(${cell.picture})`}} 
+                                                                    key={i} 
+                                                                    id={i}></div>
+                                                                : <div className="builder-container-box" 
+                                                                    key={i} 
+                                                                    id={i}></div>);
 
-    const [ top, setTop ] = useState( '100px' );
-    const [ left, setLeft ] = useState( '100px' );
-    const ref = useRef(null)
-    
-    let pizzaAllIngredients = ingredients.map( ing => {
-        let ingItems = ing.ingredients.map( ingItem => {
-           let IngEl;
-           if(ingItem.amount > 0 && ingItem.picture !== undefined ) {
-            IngEl = <div className="builder-ingredient" key={ ingItem.name }>
-                        <img className="builder-ingredient-img" src={ingItem.picture} alt={ ingItem.name } />
-                    </div>
-        }
-           return IngEl;
-       })
-       return ingItems;
-   })
+        setBuilderGrid(arrayBuilder)
+    }
 
-   const flySomewhere = () => {
-    let numTop = Math.floor(Math.random() * ref.current.clientHeight);
-    setTop(`${numTop}px`)
-    let numLeft = Math.floor(Math.random() * ref.current.clientWidth);
-    setLeft(`${numLeft}px`);
-   }
+    useEffect(() => {
+        createBuilderGrid()
+    },[pizzaAllIngredients])
 
-    return(
-        <div className="builder" ref={ ref } > 
-        <div className="pet" style={{ backgroundImage: "url('./img/pet.png')" }}></div>
-            <div className="fly" style={{ top: top, left: left, backgroundImage: "url('./img/fly.png')" }} onMouseEnter={ flySomewhere } ></div>
+    const flySomewhere = () => {
+        let numTop = Math.floor(Math.random() * ref.current.clientHeight);
+        setTop(`${numTop}px`);
+        let numLeft = Math.floor(Math.random() * ref.current.clientWidth);
+        setLeft(`${numLeft}px`);
+    };
+
+    return (
+        <div className="builder" ref={ref}>
+            <div
+                className="pet"
+                style={{ backgroundImage: "url('./img/pet.png')" }}
+            ></div>
+            <div
+                className="fly"
+                style={{
+                    top: top,
+                    left: left,
+                    backgroundImage: "url('./img/fly.png')",
+                }}
+                onMouseEnter={flySomewhere}
+            ></div>
             <div className="builder-container">
-                {[...pizzaAllIngredients]}
+                {[...builderGrid]}
             </div>
         </div>
-    )
-}
+    );
+};
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
     return {
-        popupBuilder : store.popupBuilder,
-        pizzaCounter : store.pizzaCounter,
-        ingredients : store.ingredients,
-        popupShow : store.popupShow
-}
-}
-const mapDispatchToProps = dispatch => {
+        pizzaAllIngredients: store.pizzaAllIngredients
+    };
+};
+const mapDispatchToProps = (dispatch) => {
     return {
-        close : () => dispatch( { type : POPUP_SHOW } ),
-        pizzaCounterAdd : () => dispatch( { type : PIZZA_COUNTER_ADD } ),
-        pizzaCounterRemove : () => dispatch( { type : PIZZA_COUNTER_REMOVE } )
-    }
-}
+        close: () => dispatch({ type: POPUP_SHOW })
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps) (Builder);
+export default connect(mapStateToProps, mapDispatchToProps)(Builder);

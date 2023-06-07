@@ -1,0 +1,109 @@
+.builder {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40%;
+    margin-top: auto;
+    border-top-right-radius: 100%;
+    background-color: var(--color-main);
+    border-right: 30px solid rgba(255, 196, 0, 0.863);
+    border-top: 30px solid rgba(255, 196, 0, 0.863);
+
+    &-container {
+        width: 100%;
+        height: 100%;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+
+        &-box {
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &-ingredient {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-img {
+            height: 10rem;
+            max-width: 11rem;
+        }
+    }
+}
+
+
+// @media screen and (min-width: 767px) {
+//     .builder {
+//      flex: 0 0 53%;
+
+            // &-container {
+            //     grid-gap: 2rem;
+            // }
+//     }
+//  }
+
+//  @media screen and (min-width: 768px) {
+//     .builder {
+//      flex: 0 0 53%;
+//     }
+//  }
+
+// @media (max-width: 1025px) {
+//    .builder-container {
+//     grid-template-columns: repeat( 4, 1fr );
+//    }
+// }
+// @media (max-width: 769px) {
+//    .builder-container {
+//     grid-template-columns: repeat( 3, 1fr );
+//     margin-right: 10%;
+//     margin-left: 10%;
+//    }
+// }
+
+// @media (max-width: 1150px) {
+//     .builder-ingredient-img {
+//         height: 8rem;
+//     }
+// }
+// @media (max-width: 769px) {
+//     .builder-ingredient-img {
+//         height: 6rem;
+//         max-width: 8rem;
+//     }
+// }
+// @media (max-width: 425px) {
+//     .builder-ingredient-img {
+//         height: 4rem;
+//         max-width: 5rem;
+//     }
+// }
+
+// .fly {
+//     height: 5rem;
+//     width: 5rem;
+//     position: absolute;
+//     background-position: center;
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     transition: all .4s;
+// }
+
+// @media (max-width: 425px) {
+//     .pet {
+//         position: absolute;
+//         height: 7rem;
+//         width: 7rem;
+//         background-position: center;
+//         background-size: contain;
+//         background-repeat: no-repeat;
+//         z-index: 0;
+//     }
+// }

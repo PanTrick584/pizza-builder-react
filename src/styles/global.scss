@@ -1,0 +1,24 @@
+@import "./_partials/variables.scss";
+@import "./container.scss";
+@import "./_partials/sidebar-menu.scss";
+@import "./_partials/ingredients.scss";
+@import "./_partials/ingredient-single.scss";
+@import "./_partials/builder.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-grey: #272727;
+    --color-main: #ffffca;
+    --color-yellow: rgba(255, 196, 0, 0.863);
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    // overflow-x: hidden;
+}
