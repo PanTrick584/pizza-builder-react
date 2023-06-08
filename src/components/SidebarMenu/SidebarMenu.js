@@ -22,13 +22,16 @@ const Menu = ({
 
     const menu = useCallback(() => pizzaCounter >= 1 ? ingredients.map((ing, id) => {
                       let highlightClass = pizzaCounter === id + 1 ? "menu-highlight" : "";
+                      let price = pizzaIngGroupsPrice.map(({ setName, price}) => setName === ing.name && price).filter( price => price)
+                      console.log(price);
+                      console.log(typeof price[0]);
 
                       return (
                           <li className={`menu-nav-list-item ${highlightClass}`}
                               key={ing.id}
                               onClick={() => renderIngredients(id + 1)}>
                                 {ing.name}
-                              <p className="menu-nav-list-item-price">{pizzaIngGroupsPrice.map(({ setName, price}) => setName === ing.name && price)}</p>
+                              <p className="menu-nav-list-item-price">{!price.length || price[0] === '0.0'  ? "0.00" : price}</p>
                           </li>
                       );
                   })
@@ -46,7 +49,6 @@ const Menu = ({
                 <h1 className="header-one">Pizza Builder!</h1>
                 <h4 className="header-four">by</h4>
                 <h2 className="header-two">Patryk Chodacki</h2>
-                {/* {popupShow && ( <button className="menu-btn" onClick={() => { pizzaCounterAdd(); close(); }} >Zaczynamy!</button> )} */}
             </div>
                 {!popupShow && 
                 <>
@@ -55,7 +57,7 @@ const Menu = ({
                         <ul className="menu-nav-list">{[...menu()]}</ul>
                     </nav>
                     <h3 className="menu-final">
-                        Razem:{" "}
+                        Razem:
                         <div className="menu-final-price">
                             {parseFloat(pizzaPrice).toFixed(2)}
                         </div>

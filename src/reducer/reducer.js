@@ -137,11 +137,11 @@ function reducer ( state, action ) {
         const filteredExcluded = excluded.filter( num => !deleteIngredientRandomID.includes(num));
         const filteredIngredients = allPizzaIngredients.filter( ing => !deleteIngredients.includes(ing) )
         const filteredUnique = unique.filter( ({name}) => name !== ingredientName)
-        const filteredGroupPrice = groupPrice.map( ({setName, price, ingredient}) => setName === groupName && {setName, price: price - deleteIngredientsPrice, ingredient})
+        const filteredGroupPrice = groupPrice.map( group => group.setName === groupName ? {setName: group.setName, price: parseFloat(group.price - deleteIngredientsPrice).toFixed(1), ingredient: group.ingredient} : group)
         
         return {...state, 
                 pizzaAllIngredients: filteredIngredients,
-                pizzaPrice: state.pizzaPrice - deleteIngredientsPrice,
+                pizzaPrice: parseFloat(state.pizzaPrice - deleteIngredientsPrice).toFixed(1),
                 excludedIndexes: filteredExcluded,
                 pizzaUniqueIngredients: filteredUnique,
                 pizzaIngGroupsPrice: filteredGroupPrice

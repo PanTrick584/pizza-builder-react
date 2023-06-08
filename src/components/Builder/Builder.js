@@ -37,19 +37,15 @@ const Builder = ({ pizzaAllIngredients }) => {
 
     return (
         <div className="builder" ref={ref}>
-            <div
-                className="pet"
-                style={{ backgroundImage: "url('./img/pet.png')" }}
-            ></div>
-            <div
-                className="fly"
-                style={{
+            <div className="pet"
+                 style={{ backgroundImage: "url('./img/pet.png')" }}></div>
+            <div className="fly"
+                 style={{
                     top: top,
                     left: left,
-                    backgroundImage: "url('./img/fly.png')",
-                }}
-                onMouseEnter={flySomewhere}
-            ></div>
+                    backgroundImage: "url('./img/fly.png')"}}
+                 onMouseEnter={flySomewhere}
+                 onClick={flySomewhere}></div>
             <div className="builder-container">
                 {[...builderGrid]}
             </div>

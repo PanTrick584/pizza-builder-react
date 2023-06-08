@@ -102,3 +102,69 @@
         }
     }
 }
+
+@media screen and (min-width: 767px) {
+    .ingredient {
+        height: 100%;
+        margin-top: 30px;
+        margin-bottom: 25px;
+        flex: 0 0 47.5%;
+
+        &-box {
+            &-header {
+                margin: 25px 10px 0 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .ingredient {
+        height: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        flex: 0 0 47.5%;
+
+        &-box {
+            &-1 {
+                flex: 0 0 45%;
+            }
+
+            &-2 {
+                flex: 0 0 25%;
+            }
+
+            &-header {
+                margin: -45px 10px 10px 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1680px) {
+    .ingredient {
+        &-box {
+            &-1 {
+                flex: 0 0 40%;
+            }
+
+            &-header {
+                margin: -30px 10px 10px 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .ingredient {
+        &-box {
+            &-1 {
+                flex: 0 0 40%;
+            }
+
+            &-2 {
+                flex: 0 0 25%;
+            }
+        }
+    }
+}
